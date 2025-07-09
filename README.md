@@ -2,6 +2,14 @@
 
 ---
 
+## 👥 팀원 소개
+
+| <img alt="김예랑 프로필" src="https://github.com/01tilinfinity.png" width="150px"> | <img alt="김정우 프로필" src="https://github.com/jeongwoo-right.png" width="150px"> |
+| :----------------------------------------------------------------------------------: | :-------------------------------------------------------------------------: |
+| **김예랑**                                                                          | **김정우**                                                                  |
+|             [01tilinfinity](https://github.com/01tilinfinity)                   | [jeongwoo-right](https://github.com/jeongwoo-right)                                          |
+
+
 ## 📄 프로젝트 개요
 
 > **파이어스톰**은 백준 20058번 **마법사 상어와 파이어스톰** 문제를 기반으로 만든  
@@ -111,5 +119,4 @@ $ code .
 
 ## 🔗 기타
 
-- 원문 문제: [백준 20058 - 마법사 상어와 파이어스톰](https://www.acmicpc.net/problem/20058)  
-- 문의 및 피드백: 프로젝트 담당자에게 연락 부탁드립니다! 🚀
+- 원문 문제: [백준 20058 - 마법사 상어와 파이어스톰](https://www.acmicpc.net/problem/20058)
