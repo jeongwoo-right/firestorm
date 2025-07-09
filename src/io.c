@@ -4,22 +4,24 @@
 #include <time.h>
 #include "../include/io.h"
 #include "../include/player.h"
-#include <math.h>  
+#include <math.h>
 #include "../include/map.h"
 #include "../include/game.h"
 
-// 게임을 처음 시작하면 나오는 화면
+
 void show_main_menu() {
     printf("\n");
-    printf("=========================================\n");
-    printf("🔥  파이어스톰: 마법사 상어의 얼음 도전  🔥\n");
-    printf("=========================================\n");
+    printf("============================================================\n");
+    printf("🔥🔥🔥   ＦＩＲＥＳＴＯＲＭ : 마법사 상어의 얼음 게임   🔥🔥🔥\n");
+    printf("============================================================\n");
+    printf("\n");
     printf(" [1] 게임 시작 (파이어스톰 시전)\n");
     printf(" [2] 명예의 전당 보기\n");
     printf(" [3] 게임 종료\n");
-    printf("-----------------------------------------\n");
+    printf("----------------------------------------------\n");
     printf("메뉴를 선택하세요 (1-3): ");
 }
+
 
 int input_map_size() {
     int N;
@@ -50,17 +52,20 @@ int input_firestorm_level(int N) {
 
 
 void play_game() {
-    int N = input_map_size();   // 맵 크기 선택
+    int N = input_map_size();
 
-    generate_map(N);            // 맵 생성
-    printf("\n*** 랜덤 빙판 맵 생성 완료! ***\n");
-    print_map();                // 초기 맵 출력
+    generate_map(N);
+    printf("\n❄️❄️❄️  랜덤 빙판 맵 생성 완료!  ❄️❄️❄️\n");
+    printf("----------------------------------------------\n");
+    printf("초기 빙판 상태:\n");
+    print_map();
 
-    int turn = 1;               // 턴 번호 관리
+    int turn = 1;
 
     while (1) {
         printf("\n-------------------------------\n");
-        printf("🌀 [턴 %d] 파이어스톰 시전 단계\n", turn);
+        printf("🌀 [턴 %d] 파이어스톰 시전 🌪️\n", turn);
+        printf("-------------------------------\n");
 
         int max_L = 0, tmp = N;
         while (tmp > 1) { tmp /= 2; max_L++; }
@@ -82,11 +87,10 @@ void play_game() {
 
         printf("\n🌪️ L=%d 파이어스톰을 시전합니다!\n", L);
 
-        perform_firestorm(L);   // 핵심 로직
+        perform_firestorm(L);
         printf("\n빙판 상태 업데이트:\n");
         print_map();
 
-        // 중간 피드백
         int total = get_total_ice();
         int largest = get_largest_ice_group();
         printf("현재 총 얼음 양: %d, 가장 큰 덩어리: %d\n", total, largest);
@@ -94,13 +98,11 @@ void play_game() {
         turn++;
     }
 
-    // 3️⃣ 최종 결과 출력 및 저장
     int total = get_total_ice();
     int largest = get_largest_ice_group();
 
-    printf("\n💯 === 최종 결과 ===\n");
+    printf("\n💯  ============= 최종 결과 ============= 💯\n");
     print_result(total, largest);
-
     save_hall_of_fame(total, N);
 }
 
@@ -110,11 +112,13 @@ void print_result(int total, int largest) {
     printf("❄️ 가장 큰 덩어리 크기: %d\n", largest);
 }
 
+
 void save_hall_of_fame(int total, int map_size) {
     char name[50];
     input_player_name(name);
     save_score(name, total, map_size);
 }
+
 
 typedef struct {
     char name[50];
@@ -125,8 +129,9 @@ typedef struct {
 int compare(const void* a, const void* b) {
     Record* r1 = (Record*)a;
     Record* r2 = (Record*)b;
-    return r2->score - r1->score;  // 내림차순
+    return r2->score - r1->score;
 }
+
 
 void show_hall_of_fame() {
     int sizes[] = {4, 8, 16};
@@ -137,14 +142,16 @@ void show_hall_of_fame() {
         sprintf(filename, "data/hall_of_fame_%d.txt", size);
 
         printf("\n🏆 %dx%d 명예의 전당 (상위 5명) 🏆\n", size, size);
+        printf("╔════════════════════════════════════════╗\n");
 
         FILE* fp = fopen(filename, "r");
         if (!fp) {
             printf("기록 없음\n");
+            printf("╚════════════════════════════════════════╝\n");
             continue;
         }
 
-        Record records[100];  // 최대 100개 가정
+        Record records[100];
         int count = 0;
 
         while (fscanf(fp, "%49s %d점 (%4d-%2d-%2d)\n",
@@ -159,18 +166,18 @@ void show_hall_of_fame() {
 
         if (count == 0) {
             printf("기록 없음\n");
+            printf("╚════════════════════════════════════════╝\n");
             continue;
         }
 
-        // 내림차순 정렬
         qsort(records, count, sizeof(Record), compare);
 
-        printf(" Rank | Name                | Score   | Date\n");
-        printf("------+---------------------+---------+------------\n");
+        printf(" Rank | Name                | Score | Date \n");
+        printf("------+---------------------+-------+------------\n");
 
         int rank = 1;
         for (int j = 0; j < count && j < 5; j++) {
-            printf(" %4d | %-20s | %3d점  | %04d-%02d-%02d\n",
+            printf(" %4d | %-20s | %3d점 | %04d-%02d-%02d\n",
                    rank,
                    records[j].name,
                    records[j].score,
@@ -179,6 +186,8 @@ void show_hall_of_fame() {
                    records[j].day);
             rank++;
         }
+
+        printf("╚════════════════════════════════════════╝\n");
     }
 
     printf("\n엔터를 누르면 메뉴로 돌아갑니다...");
