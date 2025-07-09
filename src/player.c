@@ -9,11 +9,12 @@ void input_player_name(char* name) {
 
 void save_score(const char* name, int score, int map_size) {
     char filename[64];
-    sprintf(filename, "data/hall_of_fame_%d.txt", map_size);
+    sprintf(filename, "../data/hall_of_fame_%d.txt", map_size);
+
 
     FILE* fp = fopen(filename, "a");
     if (!fp) {
-        printf("기록 파일을 열 수 없습니다!\n");
+        printf("❌ 기록 파일을 열 수 없습니다!\n");
         return;
     }
 

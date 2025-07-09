@@ -139,7 +139,7 @@ void show_hall_of_fame() {
     for (int i = 0; i < 3; i++) {
         int size = sizes[i];
         char filename[64];
-        sprintf(filename, "data/hall_of_fame_%d.txt", size);
+        sprintf(filename, "../data/hall_of_fame_%d.txt", size);
 
         printf("\n🏆 %dx%d 명예의 전당 (상위 5명) 🏆\n", size, size);
         printf("╔════════════════════════════════════════╗\n");
