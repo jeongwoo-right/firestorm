@@ -10,6 +10,7 @@ int rotated[MAX_N][MAX_N] = {0}; // 회전된 칸 표시
 int map[MAX_N][MAX_N];
 int N;
 
+
 void generate_map(int size) {
     N = size;
     for (int i = 0; i < N; i++)
