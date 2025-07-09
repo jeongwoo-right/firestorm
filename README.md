@@ -114,7 +114,11 @@ gcc -Iinclude -Wall -o build/Firestorm.exe src/main.c src/map.c src/game.c src/i
 .build\Firestorm.exe
 ```
 
-
+### ✅ MakeFile 활용 빌드 방법 (Windows 기준)
+```bash
+cd build
+make
+```
 
 ---
 
