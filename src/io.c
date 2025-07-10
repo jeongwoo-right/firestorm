@@ -142,6 +142,7 @@ int compare(const void* a, const void* b) {
 }
 
 
+// 명예의 전당 
 void show_hall_of_fame() {
     int sizes[] = {4, 8, 16};
 

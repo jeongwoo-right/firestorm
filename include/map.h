@@ -3,6 +3,8 @@
 
 #define MAX_N 64
 
+// 맵과 관련된 로직(맵 생성, 얼음 녹이기, 맵 출력)
+
 extern int map[MAX_N][MAX_N];
 extern int N;
 
