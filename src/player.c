@@ -2,11 +2,14 @@
 #include <time.h>
 #include "../include/player.h"
 
+
+// 플레이어명 입력
 void input_player_name(char* name) {
     printf("플레이어 이름: ");
     scanf("%s", name);
 }
 
+// 게임 종료 후 점수 저장
 void save_score(const char* name, int score, int map_size) {
     char filename[64];
     sprintf(filename, "../data/hall_of_fame_%d.txt", map_size);

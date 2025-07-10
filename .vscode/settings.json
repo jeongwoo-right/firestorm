@@ -59,6 +59,7 @@
   "files.associations": {
     "io.h": "c",
     "map.h": "c",
-    "player.h": "c"
+    "player.h": "c",
+    "util.h": "c"
   }
 }

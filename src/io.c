@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include <string.h>
 #include <time.h>
+#include <math.h>
 #include "../include/io.h"
 #include "../include/player.h"
-#include <math.h>
 #include "../include/map.h"
 #include "../include/game.h"
 
 
+// 메인 메뉴 console
 void show_main_menu() {
     printf("\n");
     printf("============================================================\n");
@@ -23,6 +24,7 @@ void show_main_menu() {
 }
 
 
+// 맵 사이즈 설정
 int input_map_size() {
     int N;
     while (1) {
@@ -41,6 +43,7 @@ int input_map_size() {
 }
 
 
+// 파이어스톰 크기 입력
 int input_firestorm_level(int N) {
     int L, max_L = 0, tmp = N;
     while (tmp > 1) { tmp /= 2; max_L++; }
@@ -51,6 +54,7 @@ int input_firestorm_level(int N) {
 }
 
 
+// *****게임 진행 함수*****
 void play_game() {
     int N = input_map_size();
 
@@ -107,12 +111,15 @@ void play_game() {
 }
 
 
+
+// 결과 출력
 void print_result(int total, int largest) {
     printf("🌨️ 총 얼음 양: %d\n", total);
     printf("❄️ 가장 큰 덩어리 크기: %d\n", largest);
 }
 
 
+// 명예의 전당에 저장
 void save_hall_of_fame(int total, int map_size) {
     char name[50];
     input_player_name(name);
@@ -120,12 +127,14 @@ void save_hall_of_fame(int total, int map_size) {
 }
 
 
+// 게임 결과(기록) 저장하는 구조체
 typedef struct {
     char name[50];
     int score;
     int year, mon, day;
 } Record;
 
+// qsort를 위한 compare 함수
 int compare(const void* a, const void* b) {
     Record* r1 = (Record*)a;
     Record* r2 = (Record*)b;
